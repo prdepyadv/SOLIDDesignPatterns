@@ -18,8 +18,14 @@ The app/commands/__init__.py file demonstrate how to implement a thread-safe Sin
 
 ## Usage
 
-Install dependencies:
+Install dependencies
+
+```bash
 pip install -r requirements.txt
+```
 
 Run the Flask application:
+
+```bash
 flask --app app run
+```
