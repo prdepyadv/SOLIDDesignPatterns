@@ -1,4 +1,4 @@
-'''
+"""
 Create a singleton class for a configuration manager that reads and stores configuration settings for an application.
 Configuration settings are typically read once and shared across the application, so using a singleton pattern 
 ensures that there is only one instance responsible for managing configurations.
@@ -18,9 +18,10 @@ meaning that only one instance can exist.
 Note on Implementation: When implementing the load_config method, make sure to store the configuration data read 
 from the JSON file in an attribute named .config. This is a specific requirement for this exercise, as our test 
 cases will check for this attribute to validate your implementation.
-'''
+"""
 
 import json
+
 
 class ConfigManager:
     _instance = None
@@ -29,7 +30,7 @@ class ConfigManager:
         # Implement the singleton pattern
         if cls._instance is None:
             cls._instance = super().__new__(cls, *args, **kwargs)
-            
+
         return cls._instance
 
     def __init__(self):
@@ -38,9 +39,9 @@ class ConfigManager:
 
     def load_config(self, config_file):
         # Read the configuration file (assuming JSON) and store the settings in the dictionary
-        with open(config_file, 'r') as file:
+        with open(config_file, "r") as file:
             config_data = json.load(file)
-        
+
         # Update the config dictionary with new settings from the config_data
         self.config.update(config_data)
 
@@ -48,18 +49,16 @@ class ConfigManager:
         # Retrieve the setting value by key
         return self.config.get(key, None)
 
+
 # Create a sample JSON configuration file named 'config.json'
 sample_config = {
     "database": {
         "host": "localhost",
         "port": 5432,
         "user": "admin",
-        "password": "password"
+        "password": "password",
     },
-    "api": {
-        "host": "0.0.0.0",
-        "port": 8000
-    }
+    "api": {"host": "0.0.0.0", "port": 8000},
 }
 
 with open("config.json", "w") as f:

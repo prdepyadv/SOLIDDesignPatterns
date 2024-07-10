@@ -1,4 +1,4 @@
-'''
+"""
 You task here will be to create a parameterized version of the Factory Method pattern for creating different 
 types of animals with some context data.
 
@@ -16,10 +16,11 @@ of animal to create and a dictionary containing context data for initializing th
 
 4. Test the AnimalFactory class to create different types of animals.
 
-'''
+"""
 
 from abc import ABC, abstractmethod
 from enum import Enum
+
 
 # Step 0: Create an enumeration for animal types
 class AnimalType(Enum):
@@ -27,67 +28,73 @@ class AnimalType(Enum):
     CAT = "Cat"
     FISH = "Fish"
 
+
 # Step 1: Create an abstract Animal class
 class Animal(ABC):
     @abstractmethod
     def get_info(self) -> object:
         pass
 
+
 # Step 2: Create concrete animal classes
 class Dog(Animal):
     def __init__(self, name, age):
         self.name = name
         self.age = age
-    
+
     def get_info(self):
         return self.name, self.age
+
 
 class Cat(Animal):
     def __init__(self, name, age):
         self.name = name
         self.age = age
-    
+
     def get_info(self):
         return self.name, self.age
+
 
 class Fish(Animal):
     def __init__(self, name, age):
         self.name = name
         self.age = age
-    
+
     def get_info(self):
         return self.name, self.age
+
 
 # Step 3: Create an AnimalFactory class
 class AnimalFactory:
     def create_animal(self, animal_type: AnimalType, context: dict) -> Animal:
         if animal_type == AnimalType.DOG:
-            animal = Dog(context['name'], context['age'])
+            animal = Dog(context["name"], context["age"])
         elif animal_type == AnimalType.CAT:
-            animal = Cat(context['name'], context['age'])
+            animal = Cat(context["name"], context["age"])
         elif animal_type == AnimalType.FISH:
-            animal = Fish(context['name'], context['age'])
+            animal = Fish(context["name"], context["age"])
         else:
             raise ValueError("Invalid Animal Type")
 
         return animal
 
+
 # Step 4: Test the AnimalFactory class
 def main():
     animal_factory = AnimalFactory()
 
-    dog_context = {'name': 'Buddy', 'age': 3}
+    dog_context = {"name": "Buddy", "age": 3}
     dog = animal_factory.create_animal(AnimalType.DOG, dog_context)
     print(dog.get_info())  # Output: ('Buddy', 3)
 
-    cat_context = {'name': 'Whiskers', 'age': 2}
+    cat_context = {"name": "Whiskers", "age": 2}
     cat = animal_factory.create_animal(AnimalType.CAT, cat_context)
     print(cat.get_info())  # Output: ('Whiskers', 2)
 
-    fish_context = {'name': 'Goldie', 'age': 1}
+    fish_context = {"name": "Goldie", "age": 1}
     fish = animal_factory.create_animal(AnimalType.FISH, fish_context)
     print(fish.get_info())  # Output: ('Goldie', 1)
-    
+
 
 if __name__ == "__main__":
     main()

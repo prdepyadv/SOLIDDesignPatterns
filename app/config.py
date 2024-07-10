@@ -7,6 +7,7 @@ import urllib
 def str_to_bool(value, default=False):
     return str(value).lower() in ["true", "1", "t", "y", "yes"]
 
+
 dotenv_path = path.join(path.dirname(path.dirname(path.abspath(__file__))), ".env")
 load_dotenv(dotenv_path)
 
