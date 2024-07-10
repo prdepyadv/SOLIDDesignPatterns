@@ -6,6 +6,7 @@ from app.commands import define_tasks
 import logging
 import threading
 
+# Singleton metaclass
 class SingletonMeta(ABCMeta):
     _instances = {}
     _lock = threading.Lock()
@@ -16,6 +17,8 @@ class SingletonMeta(ABCMeta):
                 cls._instances[cls] = super().__call__(*args, **kwargs)
         return cls._instances[cls]
     
+# Abstract base class for logger
+# Concrete logger class
 class BaseLogger(ABC, metaclass=SingletonMeta):
     @abstractmethod
     def debug(self, message):

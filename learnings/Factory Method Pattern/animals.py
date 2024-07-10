@@ -30,7 +30,7 @@ class AnimalType(Enum):
 # Step 1: Create an abstract Animal class
 class Animal(ABC):
     @abstractmethod
-    def get_info(self) -> str:
+    def get_info(self) -> object:
         pass
 
 # Step 2: Create concrete animal classes
@@ -72,24 +72,19 @@ class AnimalFactory:
 
         return animal
 
-class AnimalContext:
-    def __init__(self, name, age):
-        self.name = name
-        self.age = age
-
 # Step 4: Test the AnimalFactory class
 def main():
     animal_factory = AnimalFactory()
 
-    dog_context = AnimalContext(name='Buddy', age=3)
+    dog_context = {'name': 'Buddy', 'age': 3}
     dog = animal_factory.create_animal(AnimalType.DOG, dog_context)
     print(dog.get_info())  # Output: ('Buddy', 3)
 
-    cat_context = AnimalContext(name='Whiskers', age=2)
+    cat_context = {'name': 'Whiskers', 'age': 2}
     cat = animal_factory.create_animal(AnimalType.CAT, cat_context)
     print(cat.get_info())  # Output: ('Whiskers', 2)
 
-    fish_context = AnimalContext(name='Goldie', age=1)
+    fish_context = {'name': 'Goldie', 'age': 1}
     fish = animal_factory.create_animal(AnimalType.FISH, fish_context)
     print(fish.get_info())  # Output: ('Goldie', 1)
     
