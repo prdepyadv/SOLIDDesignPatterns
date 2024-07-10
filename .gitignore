@@ -1,0 +1,15 @@
+.idea/
+.vscode/
+__pycache__/
+.tox/
+.coverage
+.coverage.*
+
+
+.DS_Store
+
+myenv/
+.env
+
+*.log
+*.log.*
